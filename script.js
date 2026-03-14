@@ -330,7 +330,7 @@ Chaos Score: ${chaos.chaosScore}
 Event: ${chaos.chaosEvent}
 Streak: ${streak} day${streak === 1 ? "" : "s"}
 
-Play here: https://daily-chaos-black.vercel.app/`;
+Play here: https://daily-chaos.vercel.app/`;
 
     try {
         await navigator.clipboard.writeText(text);
