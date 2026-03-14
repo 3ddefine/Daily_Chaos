@@ -1,0 +1,472 @@
+:root {
+    --bg: #050816;
+    --bg-card: #0b1020;
+    --accent: #ff4b9a;
+    --accent-soft: rgba(255, 75, 154, 0.2);
+    --text-main: #f9fafb;
+    --text-muted: #9ca3af;
+    --border-subtle: #1f2933;
+    --success: #4ade80;
+    --danger: #fb7185;
+    --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-main);
+    background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+.app {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 180px; /* space for bottom ads */
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-main);
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+main {
+    flex: 1;
+}
+
+.card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
+    border-radius: 18px;
+    padding: 18px 16px 20px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(18px);
+    margin-bottom: 20px;
+
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.guess-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#guessInput {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+#guessInput:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent-soft);
+    transform: translateY(-1px);
+}
+
+#guessInput:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#submitGuess {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent), #ff7ac2);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 10px 25px rgba(255, 75, 154, 0.35);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+}
+
+#submitGuess:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(255, 75, 154, 0.45);
+}
+
+#submitGuess:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(255, 75, 154, 0.3);
+}
+
+#submitGuess:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.hint {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Reveal section */
+
+.reveal {
+    margin-top: 18px;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+    padding-top: 14px;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-line {
+    font-size: 0.9rem;
+    color: #e5e7eb;
+}
+
+.chaos-event {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--accent);
+}
+
+.final-score {
+    margin-top: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--success);
+}
+
+.streak {
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Share section */
+
+.share {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#shareButton {
+    padding: 9px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease, border 0.15s ease;
+}
+
+#shareButton:hover {
+    background: rgba(30, 64, 175, 0.5);
+    border-color: rgba(129, 140, 248, 0.8);
+    transform: translateY(-1px);
+}
+
+.share-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Footer / ad */
+
+footer {
+    margin-top: 4px;
+}
+
+.ad-slot {
+    width: 100%;
+    height: 52px;
+    border-radius: 12px;
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.ad-label {
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+/* Visibility helpers */
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* Animations */
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.pop-in {
+    animation: popIn 0.35s ease-out forwards;
+}
+
+.shake {
+    animation: shake 0.35s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+/* Small screens */
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.9rem;
+    }
+
+    .card {
+        padding: 16px 14px 18px;
+    }
+
+    #submitGuess {
+        font-size: 0.85rem;
+        padding-inline: 10px;
+    }
+}
+
+#bonusRollButton {
+    margin-top: 6px;
+    padding: 9px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 113, 113, 0.7);
+    background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.25), rgba(15, 23, 42, 0.95));
+    color: #fecaca;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease, border 0.15s ease, box-shadow 0.15s ease;
+}
+
+#bonusRollButton:hover:not(:disabled) {
+    background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.4), rgba(15, 23, 42, 0.98));
+    box-shadow: 0 10px 24px rgba(248, 113, 113, 0.35);
+    transform: translateY(-1px);
+}
+
+#bonusRollButton:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(248, 113, 113, 0.25);
+}
+
+#bonusRollButton:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Tutorial Overlay */
+
+.tutorial-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.tutorial-box {
+    background: #0f172a;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 22px;
+    width: 85%;
+    max-width: 360px;
+    text-align: left;
+    color: #f1f5f9;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    animation: popIn 0.35s ease-out;
+}
+
+.tutorial-box h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.tutorial-box p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+    line-height: 1.35rem;
+}
+
+#closeTutorial {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+#closeTutorial:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(99,102,241,0.35);
+}
+
+.hidden {
+    display: none;
+}
+
+.ad-slot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background: rgba(0,0,0,0.4); /* optional */
+    backdrop-filter: blur(6px);  /* optional */
+    z-index: 9999;
+}
+
+#bottom-ad-container {
+  position: fixed;
+  bottom: 0;
+  left: 40%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 100px;
+  z-index: 9999;
+}
+
+#center-ad-container {
+  position: fixed;
+  bottom: 0;
+  left: 9%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 1000px;
+  z-index: 9999;
+}
+
+#foot-text{
+  position: fixed;
+  bottom: 0;
+  left: 35%;
+  transform: translateX(-50%);
+  width: 225px;
+  height: 175px;
+  z-index: 9999;
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .card {
+        padding: 14px;
+        margin-bottom: 20px; /* prevents giant gap */
+    }
+
+    #submitGuess,
+    #bonusRollButton,
+    #shareButton {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+    }
+
+    .tutorial-box {
+        max-width: 90%;
+        padding: 18px;
+    }
+}
